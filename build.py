@@ -185,7 +185,7 @@ def panels():
                 f'<button type="button" data-mais aria-label="Mais uma unidade de {n}">+</button><small>{un.split("|")[1]}</small></span></div></li>')
         out.append(
             f'<div class="panel{" on" if i == 0 else ""}" id="pedido-{aba}" role="tabpanel" aria-labelledby="tab-{aba}" data-tab="{aba}">'
-            f'<div class="panel__head"><div><h3>{nome}</h3><p>{frase}</p></div>{foto(imagem, sizes="(max-width:860px) 92vw, 16rem")}</div>'
+            f'<div class="panel__head"><div><h3>{nome}</h3></div>{foto(imagem, sizes="(max-width:860px) 92vw, 16rem")}</div>'
             f'<ul class="itens">' + "".join(lis) + "</ul></div>")
     # empreendimentos: não é item, é fornecimento por obra
     form = ('<form class="form" data-c="empreendimento" novalidate>'

@@ -127,11 +127,10 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
 /* ---------- seções ---------- */
 .sec{position:relative;padding-block:var(--section-py)}
 .sec--alt{background:var(--bg-2)}
-.sec__head{margin-bottom:clamp(2.6rem,5vw,4rem)}
-.sec__head h2{font-size:var(--t-h2);max-width:16ch;text-wrap:balance}
-.sec__head p{margin-top:1.2rem;color:var(--muted);max-width:34rem}
-.sec__head--c{text-align:center}
-.sec__head--c h2,.sec__head--c p{margin-inline:auto}
+/* seção que se explica sozinha: só o título, centralizado, em uma linha no computador */
+.sec__head{margin-bottom:clamp(2.6rem,5vw,4rem);text-align:center}
+.sec__head h2{font-size:var(--t-h2);margin-inline:auto;text-wrap:balance}
+@media (min-width:861px){.sec__head h2{white-space:nowrap}}
 
 /* revelação ao entrar na tela (com reserva: nada nasce invisível sem JS) */
 .js .rv{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease-out),transform 1s var(--ease-out)}
@@ -161,6 +160,7 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
 .panel__head{display:grid;grid-template-columns:1fr 16rem;gap:1.5rem;align-items:center;margin-bottom:1.4rem;padding:clamp(1.2rem,2vw,1.8rem);border-radius:var(--r-lg);background:var(--surface)}
 .panel__head h3{font-size:clamp(1.3rem,2vw,1.7rem)}
 .panel__head p{margin-top:.6rem;color:var(--muted);max-width:34rem;font-size:.95rem}
+.panel__head h3:only-child{margin:0}
 .panel__head .ph{aspect-ratio:16/10}
 .itens{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
 .item{display:grid;grid-template-columns:1fr auto;gap:1rem 1.5rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--line);transition:background-color .3s}
@@ -372,8 +372,6 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
   .story__hint{display:none}
   .story__veil{background:linear-gradient(180deg,rgba(13,20,38,.9) 0%,rgba(13,20,38,.6) 34%,rgba(13,20,38,0) 55%)}
 
-  .sec__head{text-align:center}
-  .sec__head h2,.sec__head p{margin-inline:auto}
   .sec__head h2,.porque h2,.uni h2,.contact h2,.opera h2{font-size:clamp(1.8rem,calc(min(100vw - 2.5rem,90vw)*.095),2.6rem)}
   .ctas{justify-content:center}
 
