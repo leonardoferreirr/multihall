@@ -367,7 +367,7 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
   .beat h2{font-size:clamp(1.7rem,calc(min(100vw - 2.5rem,90vw)*.09),2.6rem);max-width:none;margin-inline:auto}
   .beat p{margin:.9rem auto 0;font-size:.95rem}
   .beat .ctas{justify-content:center;margin-top:1.3rem}
-  .story__steps{left:var(--gutter);right:var(--gutter);top:auto;bottom:1.6rem;transform:none;grid-auto-flow:column;grid-auto-columns:auto;justify-content:space-between;gap:.3rem;justify-items:center}
+  .story__steps{left:var(--gutter);right:calc(var(--gutter) + 3.4rem);top:auto;bottom:1.6rem;transform:none;grid-auto-flow:column;grid-auto-columns:auto;justify-content:space-between;gap:.3rem;justify-items:center}
   .story__steps li{flex-direction:column-reverse;gap:.5rem;font-size:.62rem;letter-spacing:.04em;text-align:center}
   .story__hint{display:none}
   .story__veil{background:linear-gradient(180deg,rgba(13,20,38,.9) 0%,rgba(13,20,38,.6) 34%,rgba(13,20,38,0) 55%)}
