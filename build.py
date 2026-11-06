@@ -31,8 +31,6 @@ INDEXAR = False                            # True só quando o domínio estiver 
 VERCEL = "multihall.vercel.app"
 WHATSAPP = "5524998593556"                 # só dígitos com DDI, até o Paulo passar outro
 GRUPO = "https://massuogroup.vercel.app"
-CITYSTEEL = "https://citysteel.vercel.app"
-REFORMULI = "https://reformuli.vercel.app"
 UNIDADE = ("Multihall Alphaville", "Alameda Rio Negro, 503, Alphaville, Barueri, SP")   # a confirmar com o Paulo: endereço do site antigo
 FRANQUIA_MAP = "0.8,1"                     # trecho do 3D usado no topo da /franquia (a unidade fecha e se multiplica)
 OG_BASE = DOMINIO if INDEXAR else f"https://{VERCEL}"
@@ -514,7 +512,7 @@ def main():
         "FOTO_FACHADA": foto("fachada", "uni__foto", sizes="(max-width:860px) 92vw, 46vw"),
         "FOTO_EQUIPE": foto("equipe", "opera__foto", sizes="(max-width:860px) 92vw, 46vw"),
         "UNIDADE_NOME": UNIDADE[0], "UNIDADE_CIDADE": UNIDADE[1], "UNIDADE_HTML": f"{UNIDADE[0]}<br>{UNIDADE[1]}",
-        "FOOT_SOLUCOES": foot_solucoes(), "FONE": fone(), "GRUPO": GRUPO, "CITYSTEEL": CITYSTEEL, "REFORMULI": REFORMULI,
+        "FOOT_SOLUCOES": foot_solucoes(), "FONE": fone(),
         "WHATSAPP": WHATSAPP, "FRANQUIA_MAP": FRANQUIA_MAP, "ANO": str(date.today().year),
     }
     jsv = hash_de(JS)
