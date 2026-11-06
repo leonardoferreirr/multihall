@@ -76,7 +76,7 @@ Fornecimento por obra: a construtora manda o projeto e recebe a cotação do mat
 ### Modelos
 
 - **Loja:** Ponto físico para atender aplicador, construtora e arquiteto, com o catálogo completo e a entrega da franqueadora. Investimento inicial: R$ 90.000; Taxa de franquia: R$ 30.000; Implantação: R$ 30.000; Publicidade: 2,5% do faturamento; Royalties: sobre a compra do material.
-- **Home office:** Operação sem loja aberta ao público, para começar vendendo e crescer depois. [A PREENCHER: o que muda em relação à loja] Investimento inicial: R$ 9.000; Taxa de franquia: [A PREENCHER]; Implantação: [A PREENCHER]; Publicidade: [A PREENCHER]; Royalties: [A PREENCHER].
+- **Home office:** Operação sem loja aberta ao público, para começar vendendo e crescer depois. Investimento inicial: R$ 9.000.
 
 ### Como opera
 

@@ -4,7 +4,7 @@
   const d = document, h = d.documentElement, w = window;
   const mob = w.matchMedia('(max-width:860px)');
   const rm = w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const B3D = '/assets/js/build3d.js?v=3ff960feb1';
+  const B3D = '/assets/js/build3d.js?v=d429546d22';
   const params = new URLSearchParams(location.search);
   const poster = params.get('poster') === '1';
   if (poster) h.classList.add('poster');
@@ -78,6 +78,15 @@
   setTimeout(reserva, 2500);
 
   /* ---------- história em 3D ---------- */
+  /* a bolinha do WhatsApp entra depois da história, para não cobrir texto nem etapas */
+  const bolinha = d.querySelector('.zap'), palco = d.querySelector('.story');
+  if (bolinha) {
+    const verZap = () => bolinha.classList.toggle('ver', !palco || palco.getBoundingClientRect().bottom < innerHeight * 1.02);
+    w.addEventListener('scroll', verZap, { passive: true });
+    w.addEventListener('resize', verZap, { passive: true });
+    verZap();
+  }
+
   const story = d.querySelector('.story');
   let st = null;
   if (story) {

@@ -81,7 +81,7 @@ MODELOS = [
      "texto": "Ponto físico para atender aplicador, construtora e arquiteto, com o catálogo completo e a entrega da franqueadora.",
      "invest": INVESTIMENTO_LOJA, "preco": "R$ 90.000"},
     {"id": "home", "img": "homeoffice", "nome": "Home office",
-     "texto": "Operação sem loja aberta ao público, para começar vendendo e crescer depois. [A PREENCHER: o que muda em relação à loja]",
+     "texto": "Operação sem loja aberta ao público, para começar vendendo e crescer depois.",  # a confirmar com o Paulo: o que muda em relação à loja
      "invest": INVESTIMENTO_HOME, "preco": "R$ 9.000"},
 ]
 
@@ -243,7 +243,7 @@ def modelos(completo):
     out = []
     for m in MODELOS:
         if completo:
-            lista = '<ul class="modelo__lista">' + "".join(f"<li><span>{k}</span><span>{v}</span></li>" for k, v in m["invest"][1:]) + "</ul>"
+            lista = '<ul class="modelo__lista">' + "".join(f"<li><span>{k}</span><span>{v}</span></li>" for k, v in m["invest"][1:] if "[A PREENCHER" not in v) + "</ul>"
             cta = f'<div class="ctas"><a class="btn btn--pri" href="#form" data-modelo="{m["nome"]}">Quero este modelo {ARROW}</a></div>'
         else:
             lista = ""
@@ -346,7 +346,7 @@ def llms():
     lin += ["## Para quem compra", ""] + [f"- **{t}:** {p}" for t, p, *_ in PERFIS]
     lin += ["", "## Franquia Multihall", "", "### Modelos", ""]
     for m in MODELOS:
-        lin += [f"- **{m['nome']}:** {m['texto']} " + "; ".join(f"{k}: {v}" for k, v in m["invest"]) + "."]
+        lin += [f"- **{m['nome']}:** {m['texto']} " + "; ".join(f"{k}: {v}" for k, v in m["invest"] if "[A PREENCHER" not in v) + "."]
     lin += ["", "### Como opera", ""] + [f"- **{t}:** {p}" for t, p in OPERA]
     lin += ["", "### Para quem é", ""] + [f"- **{t}:** {p}" for t, p in PARA_QUEM]
     lin += ["", "### O que a Multihall busca", ""] + [f"- **{t}:** {p}" for t, p in BUSCAMOS]

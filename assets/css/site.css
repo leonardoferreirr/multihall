@@ -434,3 +434,21 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .js .rv{opacity:1;transform:none}
 }
+
+/* revisão: o texto do 3D fica legível e a obra anda para a direita */
+.story__veil{background:linear-gradient(90deg,rgba(13,20,38,.95) 0%,rgba(13,20,38,.84) 30%,rgba(13,20,38,.28) 47%,rgba(13,20,38,0) 58%)}
+.beat p{color:rgba(232,236,245,.86)}
+.js .zap{opacity:0;visibility:hidden;transform:translateY(.6rem) scale(.96);transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),visibility .3s}
+.js .zap.ver{opacity:1;visibility:visible;transform:none}
+.mosaico figure.in figcaption{opacity:0}
+.mosaico figure:hover figcaption{opacity:1}
+@media (max-width:860px){
+  .story__veil{background:none}
+  .story__steps{right:var(--gutter)}
+  .mosaico figcaption,.mosaico figure.in figcaption{display:none}
+}
+@media (min-width:861px){
+  .story__steps li:not(.on){color:transparent}
+  .story__steps li:hover{color:var(--fg)}
+  .story--short .beat h1{max-width:9.5ch}
+}

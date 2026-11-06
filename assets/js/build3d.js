@@ -290,10 +290,10 @@ function buildScene(mobile) {
     box('glass', [dx + (WIN[0] + WIN[1]) / 2, (WIN_Y[0] + WIN_Y[1]) / 2, dz + zf + 0.03], [WIN[1] - WIN[0] - 0.1, WIN_Y[1] - WIN_Y[0] - 0.1, 0.02], t0 + 0.01, t0 + 0.04, off);
   };
   closing(0, 0, 0.87, [0, 0, 0.6]);
-  box('gable', [0, H + 0.02, 0], [1, 1, 1], 0.86, 0.885, [0, 0.6, 0]);
+  box('gable', [0, H + 0.02, 0], [1.05, 1, 1], 0.86, 0.885, [0, 0.6, 0]);   // um pouco mais larga: cobre as tesouras das pontas e fecha o oitão
   // unidades prontas em volta: laje, paredes, sótão, duas águas, cumeeira, porta e janela
   COPIES.forEach(([cx, cz], i) => {
-    const dist = Math.hypot(cx, cz), t0 = 0.88 + (dist / 12) * 0.045, off = [0, -2.6, 0];
+    const dist = Math.hypot(cx, cz), t0 = 0.865 + Math.min(1, dist / 18) * 0.05, off = [0, -2.6, 0];   // todas prontas antes do fim da rolagem, com telhado
     box('slab', [cx, -0.07, cz], [W + 0.6, 0.14, D + 0.6], t0, t0 + 0.035, off);
     box('cim', [cx, H / 2, cz], [W + 2 * (halfW + SHEET * 1.5), H, D + 2 * (halfW + SHEET * 1.5)], t0 + 0.005, t0 + 0.04, off);
     box('gable', [cx, H + 0.02, cz], [1, 1, 1], t0 + 0.01, t0 + 0.045, off);
@@ -483,7 +483,7 @@ export async function mountBuild(canvas, opts = {}) {
   }
   function updateCamera() {
     const k = camAt(pShown), aspect = Wd / Hd, tall = aspect < 1;
-    const mul = tall ? Math.min(1.75 + 0.7 * clamp01((pShown - 0.88) / 0.12), 1.2 / aspect) : Math.max(1, 1.45 / aspect);
+    const mul = tall ? Math.min(1.75 + 0.7 * clamp01((pShown - 0.88) / 0.12), 1.2 / aspect) : Math.max(1.15, 1.6 / aspect);
     const az = (k.az + parX * 3) * Math.PI / 180, el = (k.el + parY * 1.6) * Math.PI / 180, d = k.d * mul;
     // no celular o modelo fica na metade de baixo da tela (o texto está em cima)
     const ty = k.ty + (tall ? 0.6 + 1.1 * (d / 13) : 0);
@@ -491,7 +491,7 @@ export async function mountBuild(canvas, opts = {}) {
     camera.lookAt(k.tx, ty, k.tz);
     camera.fov = tall ? 34 : 30; camera.aspect = aspect;
     // no computador o texto fica à esquerda: a cena anda para a direita
-    camera.setViewOffset(Wd, Hd, tall ? 0 : -Wd * 0.1, 0, Wd, Hd);
+    camera.setViewOffset(Wd, Hd, tall ? 0 : -Wd * 0.15, 0, Wd, Hd);
     camera.updateProjectionMatrix();
     key.position.set(7, 12, 6).multiplyScalar(1 + 1.2 * clamp01((pShown - 0.88) / 0.12));
   }
