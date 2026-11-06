@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+{{HEAD}}
+</head>
+<body>
+<main class="thanks">
+  <div>
+    <img src="/assets/img/logo.svg" alt="Multihall" width="361" height="100">
+    <h1>Estamos abrindo <span class="ac">a conversa.</span></h1>
+    <p id="dest-txt">Em instantes você fala com a equipe da Multihall pelo WhatsApp.</p>
+    <div class="spin" aria-hidden="true"></div>
+    <div class="ctas">
+      <a class="btn btn--pri" id="go" href="https://wa.me/{{WHATSAPP}}">Abrir agora {{ARROW}}</a>
+      <a class="btn btn--line" href="/">Voltar ao site</a>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var W='{{WHATSAPP}}', msg='Olá! Vim pelo site da Multihall.';
+  try{ msg = sessionStorage.getItem('mh_msg') || msg; sessionStorage.removeItem('mh_msg'); }catch(e){}
+  var dest = 'https://wa.me/' + W + '?text=' + encodeURIComponent(msg);
+  document.getElementById('go').href = dest;
+  var c = (new URLSearchParams(location.search).get('c') || 'site').replace(/[^a-z0-9_-]/gi,'');
+  var t0 = Date.now(), partiu = false;
+  function vai(){ if(partiu) return; partiu = true; location.replace(dest); }
+  function talvez(){ var falta = 900 - (Date.now() - t0); setTimeout(vai, falta > 0 ? falta : 0); }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event:'conversao_whatsapp', contexto:c, eventCallback:talvez, eventTimeout:2000 });
+  if(!window.google_tag_manager){ talvez(); }
+  setTimeout(vai, 2600);
+})();
+</script>
+</body>
+</html>

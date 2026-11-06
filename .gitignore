@@ -1,0 +1,4 @@
+.DS_Store
+__pycache__/
+tools/__pycache__/
+_shots/

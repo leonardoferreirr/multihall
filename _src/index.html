@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+{{HEAD}}
+</head>
+<body>
+{{TOP}}
+<main>
+
+  <!-- história em 3D: a unidade se monta peça a peça -->
+  <section class="story" id="inicio" data-map="0,1" aria-label="Uma construção a seco montada peça a peça">
+    <div class="story__stage">
+      <picture class="story__poster">
+        <source media="(max-width:860px)" srcset="/assets/img/hero-poster-m.webp" width="900" height="1950">
+        <img src="/assets/img/hero-poster.webp" alt="Laje, guias e os primeiros montantes de aço galvanizado de uma casa em steel frame, sobre fundo azul-marinho" width="1600" height="900" fetchpriority="high" decoding="async">
+      </picture>
+      <canvas class="story__canvas" aria-hidden="true"></canvas>
+      <div class="story__veil"></div>
+      <div class="story__text">
+        <div class="wrap">
+          <div class="beat beat--0" data-a="0" data-b=".14">
+            <h1>Material de construção a seco, <span class="ac">entregue na obra.</span></h1>
+            <p>A Multihall fornece steel frame, telhados, drywall e forros para quem constrói. Você monta o pedido no site e recebe a cotação pelo WhatsApp.</p>
+            <div class="ctas">
+              <a class="btn btn--pri" href="#pedido">Monte seu pedido {{ARROW}}</a>
+              <a class="btn btn--line" href="/franquia">Seja franqueado</a>
+            </div>
+          </div>
+          <div class="beat" data-a=".14" data-b=".3">
+            <h2>A estrutura sobe em <span class="ac">steel frame.</span></h2>
+            <p>Perfis de aço galvanizado, guias, montantes e fixadores na medida do projeto. Leve, no prumo e sem esperar secar.</p>
+            <div class="ctas"><a class="btn btn--pri" href="#pedido-steel" data-tab="steel">Ver steel frame {{ARROW}}</a></div>
+          </div>
+          <div class="beat" data-a=".3" data-b=".48">
+            <h2>O telhado <span class="ac">fecha a obra.</span></h2>
+            <p>Tesouras de aço, subcobertura, telha shingle ou termoacústica, cumeeiras e rufos. Tudo de um fornecedor só.</p>
+            <div class="ctas"><a class="btn btn--pri" href="#pedido-telhados" data-tab="telhados">Ver telhados {{ARROW}}</a></div>
+          </div>
+          <div class="beat" data-a=".48" data-b=".68">
+            <h2>Paredes e divisórias <span class="ac">em drywall.</span></h2>
+            <p>Chapas ST, RU e RF, montantes, guias, lã, massa e fita para dividir e fechar cada ambiente.</p>
+            <div class="ctas"><a class="btn btn--pri" href="#pedido-drywall" data-tab="drywall">Ver drywall {{ARROW}}</a></div>
+          </div>
+          <div class="beat" data-a=".68" data-b=".84">
+            <h2>O forro <span class="ac">acaba o ambiente.</span></h2>
+            <p>Forro de gesso acartonado ou removível, com perfis, tirantes, massa e fita. Esconde a instalação e entrega o acabamento.</p>
+            <div class="ctas"><a class="btn btn--pri" href="#pedido-forros" data-tab="forros">Ver forros {{ARROW}}</a></div>
+          </div>
+          <div class="beat" data-a=".84" data-b="1.01">
+            <h2>Uma unidade vira <span class="ac">um empreendimento.</span></h2>
+            <p>Para construtoras: você manda o projeto e recebe a cotação do material completo, com entrega por etapa da obra.</p>
+            <div class="ctas">
+              <a class="btn btn--pri" href="#pedido-empreendimentos" data-tab="empreendimentos">Fornecimento por obra {{ARROW}}</a>
+              <a class="btn btn--line" href="#contato">Fale com a gente</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ol class="story__steps" aria-label="Etapas da montagem">
+        <li data-a="0" data-b=".26"><a href="#pedido-steel" data-tab="steel">Steel frame</a></li>
+        <li data-a=".26" data-b=".46"><a href="#pedido-telhados" data-tab="telhados">Telhado</a></li>
+        <li data-a=".46" data-b=".66"><a href="#pedido-drywall" data-tab="drywall">Drywall</a></li>
+        <li data-a=".66" data-b=".82"><a href="#pedido-forros" data-tab="forros">Forro</a></li>
+        <li data-a=".82" data-b="1.01"><a href="#pedido-empreendimentos" data-tab="empreendimentos">Empreendimento</a></li>
+      </ol>
+      <div class="story__hint" aria-hidden="true"><i></i>Role para montar</div>
+    </div>
+  </section>
+
+  <!-- monte seu pedido -->
+  <section class="sec" id="pedido">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 class="rv">Monte <span class="ac">seu pedido.</span></h2>
+        <p class="rv" data-d="1">Escolha a solução, adicione o que a obra precisa e mande a lista pelo WhatsApp. O site não mostra preço: a cotação sai com a condição e o prazo de entrega para a sua cidade.</p>
+      </div>
+      <div class="pedido">
+        <div class="pedido__catalogo">
+          <div class="tabs" role="tablist" aria-label="Soluções">
+            {{TABS}}
+          </div>
+          {{PANELS}}
+        </div>
+        <aside class="carrinho" id="pedido-lista" aria-label="Seu pedido">
+          <h3>Seu pedido <small class="carrinho__n"></small></h3>
+          <p class="carrinho__vazio">Nenhum item ainda. Clique em Adicionar ao lado do que a obra precisa.</p>
+          <ul class="carrinho__lista"></ul>
+          <form novalidate>
+            <div class="carrinho__campos">
+              <div class="field"><label for="p-nome">Seu nome</label><input id="p-nome" name="nome" autocomplete="name"></div>
+              <div class="field"><label for="p-cidade">Cidade da obra</label><input id="p-cidade" name="cidade" autocomplete="address-level2"></div>
+              <div class="field"><label for="p-obs">Observações (medidas, marca, etapa de entrega)</label><textarea id="p-obs" name="obs" rows="2"></textarea></div>
+            </div>
+            <button class="btn btn--pri" type="submit">Enviar pedido no WhatsApp {{ARROW}}</button>
+            <p class="carrinho__nota">A lista fica guardada neste navegador até você enviar.</p>
+            <button class="carrinho__limpar" type="button">Limpar pedido</button>
+          </form>
+        </aside>
+      </div>
+    </div>
+    <a class="pedido__pill" href="#pedido-lista" aria-label="Ver o pedido"><b>0</b>Ver pedido</a>
+  </section>
+
+  <!-- por que comprar aqui -->
+  <section class="sec sec--alt" id="porque">
+    <div class="wrap porque">
+      <div class="porque__txt">
+        <h2 class="rv">Compra feita, <span class="ac">material na obra.</span></h2>
+        <p class="rv" data-d="1">A Multihall entrega direto no canteiro, a partir de um centro de distribuição regional. Você não precisa buscar, estocar nem parar a equipe esperando.</p>
+        {{PRAZO}}
+        <ul class="fatos rv" data-d="2">
+          {{FATOS}}
+        </ul>
+        <div class="ctas porque__ctas rv" data-d="3"><a class="btn btn--pri" href="#pedido">Monte seu pedido {{ARROW}}</a></div>
+      </div>
+      <div class="porque__fotos">
+        {{FOTO_CD}}
+        {{FOTO_ENTREGA}}
+      </div>
+    </div>
+  </section>
+
+  <!-- para quem compra -->
+  <section class="sec" id="quem">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 class="rv">Para quem compra <span class="ac">na Multihall.</span></h2>
+      </div>
+      <div class="quem">
+        <div class="quem__foto" aria-hidden="true">
+          {{QUEM_FOTOS}}
+        </div>
+        <div class="quem__lista">
+          {{PERFIS}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- obras -->
+  <section class="sec sec--alt" id="obras">
+    <div class="wrap">
+      <div class="sec__head sec__head--c">
+        <h2 class="rv">O material <span class="ac">em obra.</span></h2>
+      </div>
+      <div class="mosaico">
+        {{MOSAICO}}
+      </div>
+      <p class="aviso">Imagens ilustrativas.</p>
+      <div class="ctas rv" style="justify-content:center;margin-top:2.4rem"><a class="btn btn--line" href="#contato">Quero cotar a minha obra {{ARROW}}</a></div>
+    </div>
+  </section>
+
+  <!-- unidades -->
+  <section class="sec" id="unidades">
+    <div class="wrap uni">
+      <div class="uni__txt">
+        <h2 class="rv">Onde a Multihall <span class="ac">está.</span></h2>
+        <p class="rv" data-d="1">A primeira unidade fica em Alphaville, Barueri. A rede está começando agora, e a próxima pode ser na sua região.</p>
+        <div class="uni__loja rv" data-d="2">
+          <h3>{{UNIDADE_NOME}}</h3>
+          <p>{{UNIDADE_CIDADE}}</p>
+        </div>
+        <div class="ctas rv" data-d="3"><a class="btn btn--pri" href="/franquia">Quer uma Multihall na sua região? {{ARROW}}</a></div>
+      </div>
+      <div class="rv" data-d="1">{{FOTO_FACHADA}}</div>
+    </div>
+  </section>
+
+  <!-- franquia -->
+  <section class="sec sec--alt" id="franquia">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 class="rv">Abra uma <span class="ac">Multihall.</span></h2>
+        <p class="rv" data-d="1">Dois modelos para começar. O estoque e a entrega ficam com a franqueadora: você cuida do cliente e da obra.</p>
+      </div>
+      <div class="modelos rv" data-d="1">
+        {{MODELOS_HOME}}
+      </div>
+    </div>
+  </section>
+
+  <!-- contato -->
+  <section class="sec" id="contato">
+    <div class="wrap contact">
+      <div class="contact__txt">
+        <h2 class="rv">Fale <span class="ac">com a gente.</span></h2>
+        <p class="rv" data-d="1">Conte o que a sua obra precisa, ou se quer abrir uma unidade. A gente responde pelo WhatsApp.</p>
+      </div>
+      <form class="form rv" data-d="1" data-c="contato" novalidate>
+        <div class="field"><label for="c-nome">Nome</label><input id="c-nome" name="nome" autocomplete="name" required></div>
+        <div class="field"><label for="c-zap">WhatsApp</label><input id="c-zap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" required></div>
+        <div class="field"><label for="c-cidade">Cidade da obra</label><input id="c-cidade" name="cidade" autocomplete="address-level2" required></div>
+        <div class="field"><label for="c-int">O que você procura</label>
+          <select id="c-int" name="interesse" required>
+            <option value="" disabled selected>Escolha</option>
+            <option>Steel frame</option>
+            <option>Telhados</option>
+            <option>Divisórias em drywall</option>
+            <option>Forros</option>
+            <option>Fornecimento por obra</option>
+            <option>Ser franqueado</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field field--full"><label for="c-msg">Conte um pouco (opcional)</label><textarea id="c-msg" name="mensagem" rows="2"></textarea></div>
+        <button class="btn btn--pri" type="submit">Enviar pelo WhatsApp {{ARROW}}</button>
+        <p class="form__note">Seus dados vão só para a equipe da Multihall.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+{{FOOT}}
+</body>
+</html>

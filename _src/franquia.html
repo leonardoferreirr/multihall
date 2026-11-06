@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+{{HEAD}}
+</head>
+<body>
+{{TOP}}
+<main>
+
+  <!-- topo: a unidade pronta se multiplica -->
+  <section class="story story--short" id="inicio" data-map="{{FRANQUIA_MAP}}" aria-label="A unidade Multihall se multiplica">
+    <div class="story__stage">
+      <picture class="story__poster">
+        <source media="(max-width:860px)" srcset="/assets/img/franquia-poster-m.webp" width="900" height="1950">
+        <img src="/assets/img/franquia-poster.webp" alt="Casa em construção a seco, com forro de gesso e paredes de drywall vistas pela frente aberta, sobre fundo azul-marinho" width="1600" height="900" fetchpriority="high" decoding="async">
+      </picture>
+      <canvas class="story__canvas" aria-hidden="true"></canvas>
+      <div class="story__veil"></div>
+      <div class="story__text">
+        <div class="wrap">
+          <div class="beat beat--0" data-a="0" data-b=".5">
+            <h1>Abra uma Multihall na <span class="ac">sua região.</span></h1>
+            <p>Loja ou home office. A franqueadora cuida do estoque e da entrega na obra: você cuida do cliente.</p>
+            <div class="ctas">
+              <a class="btn btn--pri" href="#form">Quero ser franqueado {{ARROW}}</a>
+              <a class="btn btn--line" href="#modelos">Ver os modelos</a>
+            </div>
+          </div>
+          <div class="beat" data-a=".5" data-b="1.01">
+            <h2>A unidade <span class="ac">se multiplica.</span></h2>
+            <p>Cada franqueado vende o mesmo catálogo, com entrega direto na obra a partir do centro de distribuição regional.</p>
+            <div class="ctas"><a class="btn btn--pri" href="#modelos">Conhecer os modelos {{ARROW}}</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="story__hint" aria-hidden="true"><i></i>Role para ver a rede</div>
+    </div>
+  </section>
+
+  <!-- como opera -->
+  <section class="sec" id="opera">
+    <div class="wrap opera">
+      <div class="opera__txt">
+        <h2 class="rv">Como a franquia <span class="ac">opera.</span></h2>
+        <ul class="opera__lista rv" data-d="1">
+          {{OPERA}}
+        </ul>
+      </div>
+      <div class="rv" data-d="2">{{FOTO_EQUIPE}}</div>
+    </div>
+  </section>
+
+  <!-- modelos -->
+  <section class="sec sec--alt" id="modelos">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 class="rv">Dois jeitos <span class="ac">de começar.</span></h2>
+        <p class="rv" data-d="1">O investimento de cada modelo e o que ele inclui. Os valores são os informados pela Multihall e passam por confirmação na Circular de Oferta de Franquia.</p>
+      </div>
+      <div class="modelos rv" data-d="1">
+        {{MODELOS_FULL}}
+      </div>
+    </div>
+  </section>
+
+  <!-- para quem é -->
+  <section class="sec" id="perfil">
+    <div class="wrap perfis">
+      <div class="rv">
+        <h3>Para quem é a franquia</h3>
+        <ul class="lista">
+          {{PARA_QUEM}}
+        </ul>
+      </div>
+      <div class="rv" data-d="1">
+        <h3>O que a Multihall busca no franqueado</h3>
+        <ul class="lista">
+          {{BUSCAMOS}}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- etapas -->
+  <section class="sec sec--alt" id="etapas">
+    <div class="wrap">
+      <div class="sec__head sec__head--c">
+        <h2 class="rv">Da conversa <span class="ac">à inauguração.</span></h2>
+      </div>
+      <div class="etapas">
+        <span class="etapas__fill" aria-hidden="true"></span>
+        {{ETAPAS}}
+      </div>
+    </div>
+  </section>
+
+  <!-- formulário -->
+  <section class="sec" id="form">
+    <div class="wrap contact">
+      <div class="contact__txt">
+        <h2 class="rv">Quero ser <span class="ac">franqueado.</span></h2>
+        <p class="rv" data-d="1">Deixe seus dados e a equipe de expansão da Multihall fala com você pelo WhatsApp.</p>
+      </div>
+      <form class="form rv" data-d="1" data-c="franquia" novalidate>
+        <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="field"><label for="f-zap">WhatsApp</label><input id="f-zap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" required></div>
+        <div class="field"><label for="f-cidade">Cidade e estado</label><input id="f-cidade" name="cidade" autocomplete="address-level2" required></div>
+        <div class="field"><label for="f-modelo">Modelo de interesse</label>
+          <select id="f-modelo" name="interesse" required>
+            <option value="" disabled selected>Escolha</option>
+            <option>Loja</option>
+            <option>Home office</option>
+            <option>Ainda não sei</option>
+          </select>
+        </div>
+        <div class="field field--full"><label for="f-msg">Algo que a gente precisa saber? (opcional)</label><textarea id="f-msg" name="mensagem" rows="2"></textarea></div>
+        <button class="btn btn--pri" type="submit">Enviar pelo WhatsApp {{ARROW}}</button>
+        <p class="form__note">Seus dados vão só para a equipe de expansão da Multihall.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+{{FOOT}}
+</body>
+</html>
