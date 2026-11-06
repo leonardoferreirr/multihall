@@ -45,7 +45,8 @@
 
   /* âncoras da mesma página passam pelo Lenis quando ele existe; data-tab abre a aba certa antes de rolar */
   const rolarAte = (alvo, hash) => {
-    if (lenis) lenis.scrollTo(alvo, { offset: -76 });
+    /* o pedido já reserva o espaço do cabeçalho: no computador ele para no início exato da sua tela */
+    if (lenis) lenis.scrollTo(alvo, { offset: alvo.id === 'pedido' && innerWidth > 860 ? 0 : -76 });
     else alvo.scrollIntoView({ behavior: rm ? 'auto' : 'smooth' });
     if (hash) history.replaceState(null, '', hash);
   };
