@@ -4,7 +4,7 @@
   const d = document, h = d.documentElement, w = window;
   const mob = w.matchMedia('(max-width:860px)');
   const rm = w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const B3D = '/assets/js/build3d.js?v=93c293534b';
+  const B3D = '/assets/js/build3d.js?v=3ff960feb1';
   const params = new URLSearchParams(location.search);
   const poster = params.get('poster') === '1';
   if (poster) h.classList.add('poster');
