@@ -463,7 +463,6 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
 .fixo>.wrap{position:relative;z-index:1}
 
 /* Compra feita: seção curta, título à esquerda, prazo à direita e o botão no centro */
-.fixo--curta{padding-block:clamp(4.5rem,12vh,7.5rem)}
 .porque{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
 .porque h2{max-width:none;font-size:clamp(2.2rem,4.1vw,4rem);line-height:1.08}
 .prazo{align-items:center;gap:clamp(1.2rem,2vw,2rem);margin:0;padding:0;border:0;justify-content:flex-end}
@@ -473,7 +472,7 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
 
 /* Para quem compra: cada perfil ganha seu trecho de rolagem, e a foto só solta na quarta imagem */
 @media (min-width:861px){
-  .quem__lista .perfil{min-height:52vh;align-content:center}
+  .quem__lista .perfil{min-height:clamp(14rem,29vh,17.5rem);align-content:center}
   .perfil:not(.on){opacity:.55}
 }
 
@@ -530,6 +529,72 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
   .mira__cred{text-align:center}
 }
 
-/* o galpão enquadrado nas prateleiras: o letreiro da parede não disputa com o 48h */
-.fixo--curta .fixo__bg img{object-position:0% 100%;transform:scale(1.8);transform-origin:0% 100%}
 @media (max-width:860px){#unidades .fixo__bg::after{background:linear-gradient(180deg,rgba(13,20,38,.88),rgba(13,20,38,.84) 50%,rgba(13,20,38,.9))}}
+
+/* Compra feita: imagem 3:1 em resolução cheia, com o logo livre no meio e a camada azul nas laterais */
+.porque-sec{position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden;min-height:clamp(22rem,30vw,38rem);padding-block:clamp(2.5rem,4.5vw,4.5rem);background:var(--bg)}
+.porque__bg{position:absolute;inset:0;z-index:0}
+.porque__img{position:absolute;left:0;top:0;display:block;width:100%;height:auto;min-height:100%;max-width:none;object-fit:cover;will-change:transform}
+.porque__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,20,38,.88) 0%,rgba(13,20,38,.68) 27%,rgba(13,20,38,.08) 40%,rgba(13,20,38,0) 50%,rgba(13,20,38,.08) 60%,rgba(13,20,38,.68) 73%,rgba(13,20,38,.88) 100%)}
+.porque-sec>.wrap{position:relative;z-index:1;width:100%}
+.porque-sec h2{text-shadow:0 2px 18px rgba(13,20,38,.55)}
+.porque-sec .prazo span{text-shadow:0 1px 10px rgba(13,20,38,.7)}
+.porque-sec .ctas--centro{margin-top:clamp(5.5rem,10vw,9.5rem)}
+@media (max-width:860px){
+  .porque-sec{display:block;min-height:0;padding-block:0 3.2rem}
+  .porque__bg{position:relative;inset:auto;height:clamp(12rem,52vw,18rem);margin-bottom:1.6rem}
+  .porque__img{inset:0;width:100%;height:100%;min-height:0;object-position:50% 40%;transform:none!important}
+  .porque__bg::after{background:linear-gradient(180deg,rgba(13,20,38,0) 62%,var(--bg) 100%)}
+  .porque-sec .ctas--centro{margin-top:1.8rem}
+}
+
+/* acabamento do banner: em tela larga o texto acompanha as laterais da imagem e não encosta no logo */
+.porque-sec{min-height:clamp(20rem,28vw,36rem);padding-block:clamp(1.8rem,3vw,3.2rem)}
+.porque-sec>.wrap{max-width:none;padding-inline:clamp(1.25rem,6vw,8rem)}
+.porque-sec h2{font-size:clamp(2rem,3.5vw,3.5rem)}
+.porque__bg{overflow:hidden}
+@media (max-width:860px){
+  .porque-sec{min-height:0;padding-block:0 3.2rem}
+  .porque-sec>.wrap{padding-inline:var(--gutter)}
+  .porque__bg::after{inset:-1px;background:linear-gradient(180deg,rgba(13,20,38,0) 58%,var(--bg) 97%)}
+}
+
+/* Monte seu pedido: no computador a seção inteira cabe em uma tela, com os itens em duas colunas e uma linha no meio */
+@media (min-width:861px){
+  #pedido{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-block:calc(4.6rem + clamp(.7rem,2vh,1.6rem)) clamp(1rem,2.4vh,2rem);scroll-margin-top:0}
+  #pedido>.wrap{width:100%}
+  #pedido .sec__head{margin-bottom:clamp(.8rem,2vh,1.4rem)}
+  #pedido .sec__head h2{font-size:clamp(1.9rem,3vw,2.9rem)}
+  #pedido .tabs{flex-wrap:nowrap;margin-bottom:clamp(.7rem,1.6vh,1.1rem)}
+  #pedido .tab{height:2.6rem;padding:0 .95rem;white-space:nowrap;font-size:.9rem}
+  #pedido .panel__head{grid-template-columns:1fr 13rem;gap:1rem;margin-bottom:clamp(.3rem,1vh,.7rem);padding:.6rem .6rem .6rem 1.1rem}
+  #pedido .panel__head h3{font-size:clamp(1.1rem,1.5vw,1.35rem)}
+  #pedido .panel__head .ph{aspect-ratio:auto;height:clamp(4.6rem,10vh,6.4rem)}
+  #pedido .itens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
+  #pedido .item{gap:.4rem .9rem;padding-block:clamp(.5rem,1.25vh,.85rem)}
+  #pedido .item:nth-child(odd){padding-right:1.2rem;border-right:1px solid var(--line)}
+  #pedido .item:nth-child(even){padding-left:1.2rem}
+  #pedido .item__n{font-size:.96rem}
+  #pedido .item__d{font-size:.78rem;line-height:1.35;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  #pedido .item__add{white-space:nowrap}
+  #pedido .qty small{display:none}
+  #pedido .carrinho{top:5.4rem;max-height:calc(100vh - 6.4rem);max-height:calc(100svh - 6.4rem);overflow:auto;scrollbar-width:thin}
+  #pedido .carrinho__lista{max-height:24vh}
+  #pedido .panel .form{gap:.6rem}
+}
+@media (min-width:861px) and (max-height:800px){
+  #pedido .panel__head .ph{display:none}
+  #pedido .panel__head{grid-template-columns:1fr;padding:0;margin-bottom:.2rem;background:none;border:0}
+  #pedido .panel__head h3{display:none}
+  #pedido .carrinho__nota{display:none}
+}
+.porque-sec h2 .ac{display:block}
+@media (min-width:861px) and (max-height:800px){
+  #pedido .panel__head p{margin:0 0 .3rem;font-size:.84rem}
+  #pedido .panel .form{padding:.9rem 1.1rem;gap:.5rem .8rem}
+  #pedido .panel .form .field input,#pedido .panel .form .field select{height:2.4rem}
+  #pedido .panel .form .field textarea{height:2.8rem}
+  #pedido .panel .form .field label{font-size:.76rem}
+  #pedido .panel .form .btn{height:2.7rem}
+  #pedido .panel .form .form__note{display:none}
+}

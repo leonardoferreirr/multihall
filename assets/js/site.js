@@ -89,6 +89,20 @@
     d.querySelectorAll('.mira').forEach(el => el.classList.add('in'));
   }
 
+  /* Compra feita: a imagem anda mais devagar que a seção, sem ampliar além da resolução dela */
+  const secGalpao = d.querySelector('.porque-sec'), imgGalpao = secGalpao && secGalpao.querySelector('.porque__img');
+  const moverGalpao = () => {
+    if (!imgGalpao || w.matchMedia('(max-width:860px),(prefers-reduced-motion:reduce)').matches) return;
+    const r = secGalpao.getBoundingClientRect();
+    if (r.bottom < -80 || r.top > innerHeight + 80) return;
+    const folga = imgGalpao.offsetHeight - r.height;
+    const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+    imgGalpao.style.transform = folga > 0 ? `translate3d(0,${(-folga * p).toFixed(1)}px,0)` : '';
+  };
+  w.addEventListener('scroll', () => requestAnimationFrame(moverGalpao), { passive: true });
+  w.addEventListener('resize', moverGalpao, { passive: true });
+  moverGalpao();
+
   /* a bolinha do WhatsApp entra depois da história, para não cobrir texto nem etapas */
   const bolinha = d.querySelector('.zap'), palco = d.querySelector('.story');
   if (bolinha) {
@@ -148,9 +162,19 @@
   let perfilAtivo = -1;
   const moverQuem = () => {
     if (!perfis.length) return;
-    const meio = innerHeight * 0.45;
-    let k = 0, melhor = Infinity;
-    perfis.forEach((p, i) => { const r = p.getBoundingClientRect(); const dist = Math.abs((r.top + r.bottom) / 2 - meio); if (dist < melhor) { melhor = dist; k = i; } });
+    let k = 0;
+    const palcoFoto = d.querySelector('.quem__foto'), lista = d.querySelector('.quem__lista');
+    if (palcoFoto && getComputedStyle(palcoFoto).position === 'sticky') {
+      /* no computador cada imagem ganha um quarto do trecho em que a foto fica presa: a quarta entra antes de ela soltar */
+      const curso = Math.max(1, lista.offsetHeight - palcoFoto.offsetHeight);
+      const topoFixo = parseFloat(getComputedStyle(palcoFoto).top) || 0;
+      const progresso = (topoFixo - lista.getBoundingClientRect().top) / curso;
+      k = Math.min(perfis.length - 1, Math.max(0, Math.floor(progresso * perfis.length)));
+    } else {
+      const meio = innerHeight * 0.45;
+      let melhor = Infinity;
+      perfis.forEach((p, i) => { const r = p.getBoundingClientRect(); const dist = Math.abs((r.top + r.bottom) / 2 - meio); if (dist < melhor) { melhor = dist; k = i; } });
+    }
     if (k === perfilAtivo) return;
     perfilAtivo = k;
     perfis.forEach((p, i) => p.classList.toggle('on', i === k));
