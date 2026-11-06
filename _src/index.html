@@ -101,21 +101,14 @@
   </section>
 
   <!-- por que comprar aqui -->
-  <section class="sec sec--alt" id="porque">
-    <div class="wrap porque">
-      <div class="porque__txt">
+  <section class="sec fixo fixo--curta" id="porque">
+    {{BG_CD}}
+    <div class="wrap">
+      <div class="porque">
         <h2 class="rv">Compra feita, <span class="ac">material na obra.</span></h2>
-        <p class="rv" data-d="1">A Multihall entrega direto no canteiro, a partir de um centro de distribuição regional. Você não precisa buscar, estocar nem parar a equipe esperando.</p>
         {{PRAZO}}
-        <ul class="fatos rv" data-d="2">
-          {{FATOS}}
-        </ul>
-        <div class="ctas porque__ctas rv" data-d="3"><a class="btn btn--pri" href="#pedido">Monte seu pedido {{ARROW}}</a></div>
       </div>
-      <div class="porque__fotos">
-        {{FOTO_CD}}
-        {{FOTO_ENTREGA}}
-      </div>
+      <div class="ctas ctas--centro rv" data-d="2"><a class="btn btn--pri" href="#pedido">Monte seu pedido {{ARROW}}</a></div>
     </div>
   </section>
 
@@ -151,18 +144,20 @@
   </section>
 
   <!-- unidades -->
-  <section class="sec" id="unidades">
+  <section class="sec fixo" id="unidades">
+    {{BG_FACHADA}}
     <div class="wrap uni">
       <div class="uni__txt">
         <h2 class="rv">Onde a Multihall <span class="ac">está.</span></h2>
-        <p class="rv" data-d="1">A primeira unidade fica em Alphaville, Barueri. A rede está começando agora, e a próxima pode ser na sua região.</p>
-        <div class="uni__loja rv" data-d="2">
+        <div class="uni__loja rv" data-d="1">
           <h3>{{UNIDADE_NOME}}</h3>
           <p>{{UNIDADE_CIDADE}}</p>
+          <a class="link" href="{{MAPA_URL}}" target="_blank" rel="noopener">Abrir no mapa {{ARROW}}</a>
         </div>
-        <div class="ctas rv" data-d="3"><a class="btn btn--pri" href="/franquia">Quer uma Multihall na sua região? {{ARROW}}</a></div>
+        <div class="ctas rv" data-d="2"><a class="btn btn--pri" href="/franquia">Quer uma Multihall na sua região? {{ARROW}}</a></div>
       </div>
-      <div class="rv" data-d="1">{{FOTO_FACHADA}}</div>
+      <div class="uni__map"><div class="mira rv" data-d="1" aria-hidden="true">{{MIRA}}</div>
+        <p class="mira__cred">Mapa: dados © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p></div>
     </div>
   </section>
 

@@ -78,6 +78,17 @@
   setTimeout(reserva, 2500);
 
   /* ---------- história em 3D ---------- */
+  /* fundo parado das seções só pinta por perto; o mapa só anima quando está na tela */
+  if ('IntersectionObserver' in w) {
+    const ioFixo = new IntersectionObserver(es => es.forEach(en => en.target.classList.toggle('perto', en.isIntersecting)), { rootMargin: '30% 0px' });
+    d.querySelectorAll('.fixo').forEach(el => ioFixo.observe(el));
+    const ioMira = new IntersectionObserver(es => es.forEach(en => en.target.classList.toggle('in', en.isIntersecting)), { rootMargin: '0px 0px -10% 0px' });
+    d.querySelectorAll('.mira').forEach(el => ioMira.observe(el));
+  } else {
+    d.querySelectorAll('.fixo').forEach(el => el.classList.add('perto'));
+    d.querySelectorAll('.mira').forEach(el => el.classList.add('in'));
+  }
+
   /* a bolinha do WhatsApp entra depois da história, para não cobrir texto nem etapas */
   const bolinha = d.querySelector('.zap'), palco = d.querySelector('.story');
   if (bolinha) {

@@ -452,3 +452,84 @@ h3{font-weight:500;letter-spacing:-.015em;line-height:1.2;font-size:var(--t-h3)}
   .story__steps li:hover{color:var(--fg)}
   .story--short .beat h1{max-width:9.5ch}
 }
+
+/* imagem parada atrás da seção, com a camada azul (parallax por clip-path) */
+.fixo{position:relative;clip-path:inset(0);background:var(--bg)}
+.fixo__bg{position:fixed;inset:0;z-index:0;background:var(--bg)}
+.js .fixo__bg{visibility:hidden}
+.js .fixo.perto .fixo__bg{visibility:visible}
+.fixo__bg img{width:100%;height:100%;object-fit:cover}
+.fixo__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,38,.8),rgba(13,20,38,.74) 50%,rgba(13,20,38,.84))}
+.fixo>.wrap{position:relative;z-index:1}
+
+/* Compra feita: seção curta, título à esquerda, prazo à direita e o botão no centro */
+.fixo--curta{padding-block:clamp(4.5rem,12vh,7.5rem)}
+.porque{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.porque h2{max-width:none;font-size:clamp(2.2rem,4.1vw,4rem);line-height:1.08}
+.prazo{align-items:center;gap:clamp(1.2rem,2vw,2rem);margin:0;padding:0;border:0;justify-content:flex-end}
+.prazo b{font-size:clamp(4.2rem,8vw,7.4rem)}
+.prazo span{padding:0;max-width:17rem;font-size:clamp(1rem,1.25vw,1.2rem);color:var(--fg)}
+.ctas--centro{justify-content:center;margin-top:clamp(2rem,5vh,3.2rem)}
+
+/* Para quem compra: cada perfil ganha seu trecho de rolagem, e a foto só solta na quarta imagem */
+@media (min-width:861px){
+  .quem__lista .perfil{min-height:52vh;align-content:center}
+  .perfil:not(.on){opacity:.55}
+}
+
+/* Onde a Multihall está */
+.uni{grid-template-columns:1fr 1fr;align-items:center}
+.uni__loja{background:rgba(13,20,38,.72)}
+.uni__loja .link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;color:var(--accent);font-size:.92rem}
+.uni__loja .link svg{width:1rem;height:1rem}
+.uni__map{min-width:0}
+.mira{position:relative;aspect-ratio:1;max-width:34rem;width:100%;margin-left:auto;background:rgba(13,20,38,.82);border-radius:var(--r-lg);overflow:hidden}
+.mira svg{display:block;width:100%;height:100%}
+.mira .m-line{stroke:rgba(232,236,245,.22);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.mira .m-ring{stroke:#8f9bb3;stroke-width:1;fill:none;opacity:.5;vector-effect:non-scaling-stroke}
+.mira .m-acc{stroke:url(#gr);stroke-width:1.5;fill:none;vector-effect:non-scaling-stroke}
+.mira .m-txt{fill:#aeb8cc;font:400 11px var(--font,Poppins,sans-serif);letter-spacing:.18em}
+.mira .m-big{fill:#fff;font:300 22px var(--font,Poppins,sans-serif);letter-spacing:-.01em}
+.mira .pulse{transform-origin:300px 300px;animation:pulse 3.2s var(--ease-out) infinite;animation-play-state:paused}
+.mira.in .pulse{animation-play-state:running}
+.mira .pulse:nth-of-type(2){animation-delay:1.6s}
+@keyframes pulse{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.mira .sweep{transform-origin:300px 300px;animation:sweep 9s linear infinite;animation-play-state:paused}
+.mira.in .sweep{animation-play-state:running}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.mira .mp{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.mira .mp-min{stroke:#8f9bb3;stroke-width:.7;opacity:.34}
+.mira .mp-maj{stroke:#aeb8cc;stroke-width:1.1;opacity:.85}
+.mira .mp-rod{stroke:#fff;stroke-width:1.9;opacity:.55}
+.mira .mp-agua{stroke:#8f9bb3;stroke-width:.8;opacity:.45;stroke-dasharray:3 4}
+.mira .mp-sede{stroke:url(#gr);stroke-width:2.6}
+.mira .m-rua{font-size:9px;letter-spacing:.22em;fill:#aeb8cc}
+.js .mira .mp-maj,.js .mira .mp-rod,.js .mira .mp-sede{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s var(--ease-inout)}
+.js .mira .mp-sede{transition-duration:1.4s;transition-delay:1.6s}
+.js .mira .mp-rod{transition-delay:.3s}
+.js .mira .mp-min,.js .mira .mp-agua,.js .mira .m-rua{opacity:0;transition:opacity 1.6s var(--ease-out) .6s}
+.mira.in .mp-maj,.mira.in .mp-rod,.mira.in .mp-sede{stroke-dashoffset:0}
+.js .mira.in .mp-min{opacity:.34}.js .mira.in .mp-agua{opacity:.45}.js .mira.in .m-rua{opacity:1}
+.mira__cred{margin-top:.7rem;font-size:.72rem;color:#aeb8cc;text-align:right}
+.mira__cred a{text-decoration:underline;text-underline-offset:2px}
+@media (prefers-reduced-motion:reduce){.mira .sweep,.mira .pulse{animation:none}.js .mira .mp-maj,.js .mira .mp-rod,.js .mira .mp-sede{stroke-dashoffset:0;transition:none}.js .mira .mp-min,.js .mira .mp-agua,.js .mira .m-rua{opacity:.4;transition:none}}
+
+/* Fale com a gente: título no centro, formulário no meio e o botão embaixo */
+.contact{display:block;max-width:44rem;margin-inline:auto}
+.contact__txt{text-align:center;margin-bottom:clamp(1.6rem,3.5vw,2.6rem)}
+.contact .form .btn{width:100%;justify-content:center;grid-column:1/-1}
+.contact .form__note{grid-column:1/-1;text-align:center}
+
+@media (max-width:860px){
+  .porque{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .prazo{justify-content:center;flex-direction:column;gap:.7rem;text-align:center}
+  .prazo span{margin-inline:auto;max-width:20rem}
+  .uni{grid-template-columns:1fr}
+  .uni .ctas{justify-content:center}
+  .mira{margin-inline:auto}
+  .mira__cred{text-align:center}
+}
+
+/* o galpão enquadrado nas prateleiras: o letreiro da parede não disputa com o 48h */
+.fixo--curta .fixo__bg img{object-position:0% 100%;transform:scale(1.8);transform-origin:0% 100%}
+@media (max-width:860px){#unidades .fixo__bg::after{background:linear-gradient(180deg,rgba(13,20,38,.88),rgba(13,20,38,.84) 50%,rgba(13,20,38,.9))}}

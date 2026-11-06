@@ -33,7 +33,7 @@ WHATSAPP = "5524998593556"                 # só dígitos com DDI, até o Paulo 
 GRUPO = "https://massuogroup.vercel.app"
 CITYSTEEL = "https://citysteel.vercel.app"
 REFORMULI = "https://reformuli.vercel.app"
-UNIDADE = ("Multihall Alphaville", "Alphaville, Barueri, SP")   # sem endereço até o Paulo confirmar
+UNIDADE = ("Multihall Alphaville", "Alameda Rio Negro, 503, Alphaville, Barueri, SP")   # a confirmar com o Paulo: endereço do site antigo
 FRANQUIA_MAP = "0.8,1"                     # trecho do 3D usado no topo da /franquia (a unidade fecha e se multiplica)
 OG_BASE = DOMINIO if INDEXAR else f"https://{VERCEL}"
 ROBOS_IA = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
@@ -206,6 +206,59 @@ def panels():
     return "\n          ".join(out)
 
 
+# a confirmar com o Paulo: endereço do site antigo da empresa; o mapa usa o mesmo ponto (OpenStreetMap)
+GEO = (-23.5013158, -46.8483703)
+MAPA_URL = "https://www.google.com/maps/search/?api=1&query=Alameda+Rio+Negro+503+Alphaville+Barueri+SP"
+
+
+def fundo(base):
+    """Imagem parada atrás da seção (efeito parallax por clip-path), com a camada azul por cima."""
+    if not (IMG / f"{base}-1600.webp").exists():
+        return ""
+    return (f'<div class="fixo__bg" aria-hidden="true"><img src="/assets/img/{base}-1600.webp" '
+            f'srcset="/assets/img/{base}-900.webp 900w, /assets/img/{base}-1600.webp 1600w" sizes="100vw" alt="" '
+            f'width="1600" height="900" loading="lazy" decoding="async"></div>')
+
+
+def dms(v, pos, neg):
+    s = pos if v >= 0 else neg
+    v = abs(v); d = int(v); m = int((v - d) * 60); sec = round(((v - d) * 60 - m) * 60)
+    return f"{d}°{m:02d}′{sec:02d}″{s}"
+
+
+def mira():
+    """Mapa da unidade: ruas reais de Alphaville (OpenStreetMap) em linha fina,
+    régua, varredura e coordenadas. A unidade fica no centro (300,300)."""
+    import sys
+    sys.path.insert(0, str(RAIZ / "tools"))
+    from mapa_osm import mapa
+    t = []
+    for k in range(20, 581, 20):
+        L = 14 if k % 100 == 0 else 6
+        t += [f"M{k} 20v{L}", f"M{k} 580v-{L}", f"M20 {k}h{L}", f"M580 {k}h-{L}"]
+    ticks = " ".join(t)
+    lat, lon = dms(GEO[0], "N", "S"), dms(GEO[1], "L", "O")
+    return f'''<svg viewBox="0 0 600 600" role="img" aria-label="Mapa de Alphaville com a Multihall na Alameda Rio Negro">
+<defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f58a1f"/><stop offset="1" stop-color="#ffb04d"/></linearGradient>
+<radialGradient id="wedge" cx="300" cy="300" r="262" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f58a1f" stop-opacity=".2"/><stop offset="1" stop-color="#f58a1f" stop-opacity="0"/></radialGradient>
+<radialGradient id="vinheta" cx="300" cy="300" r="300" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#0d1426" stop-opacity="0"/><stop offset="1" stop-color="#0d1426" stop-opacity=".85"/></radialGradient>
+<clipPath id="quadro"><rect x="20" y="20" width="560" height="560"/></clipPath></defs>
+{mapa()}
+<rect x="20" y="20" width="560" height="560" fill="url(#vinheta)"/>
+<rect class="m-line" x="20" y="20" width="560" height="560"/>
+<path class="m-line" d="{ticks}"/>
+<path class="m-line m-cross" d="M20 300H580M300 20V580" stroke-dasharray="4 6"/>
+<circle class="m-ring" cx="300" cy="300" r="120"/>
+<circle class="m-ring" cx="300" cy="300" r="262" stroke-dasharray="2 8"/>
+<g class="sweep"><path d="M300 300L300 38A262 262 0 0 1 431 73Z" fill="url(#wedge)"/><path class="m-acc" d="M300 300V38"/></g>
+<circle class="m-acc pulse" cx="300" cy="300" r="60"/><circle class="m-acc pulse" cx="300" cy="300" r="60"/>
+<rect x="293" y="293" width="14" height="14" fill="#f58a1f" transform="rotate(45 300 300)"/>
+<g class="m-tag"><rect x="40" y="36" width="150" height="54" fill="#0d1426" fill-opacity=".8"/><text class="m-txt" x="48" y="58">{lat}</text><text class="m-txt" x="48" y="78">{lon}</text></g>
+<text class="m-txt" x="560" y="58" text-anchor="end">N ↑</text>
+<g class="m-tag"><rect x="34" y="520" width="232" height="56" fill="#0d1426" fill-opacity=".8"/><text class="m-big" x="40" y="548">Alphaville, Barueri</text><text class="m-txt" x="40" y="566">MULTIHALL ALPHAVILLE</text></g>
+</svg>'''
+
+
 def prazo():
     if not ENTREGA_HORAS:
         return ""
@@ -336,7 +389,7 @@ def llms():
            "- Como comprar: monta a lista no site, sem preço, e envia pelo WhatsApp; a cotação volta com condição e prazo.",
            "- Entrega: direto na obra" + (", a partir de um centro de distribuição regional" if CD_REGIONAL else "") + (f", em até {ENTREGA_HORAS} horas para os itens do catálogo na região atendida" if ENTREGA_HORAS else "") + ".",
            f"- Primeira obra entregue em {PRIMEIRA_OBRA}.",
-           f"- Unidade: {UNIDADE[0]}, {UNIDADE[1]}. A rede está começando.",
+           f"- Unidade: {UNIDADE[0]}, {UNIDADE[1]}.",
            "- Franquia: " + "; ".join(f"{m['nome'].lower()}, investimento inicial de {m['preco']}" for m in MODELOS) + ".",
            f"- Contato: WhatsApp {fone()}." if WHATSAPP else "- Contato: formulário do site.",
            "", "## Soluções e itens do catálogo", ""]
@@ -456,6 +509,7 @@ def main():
         "PERFIS": perfis_html, "QUEM_FOTOS": quem_fotos, "MOSAICO": mosaico(),
         "MODELOS_HOME": modelos(False), "MODELOS_FULL": modelos(True),
         "OPERA": opera(), "PARA_QUEM": lista_simples(PARA_QUEM), "BUSCAMOS": lista_simples(BUSCAMOS), "ETAPAS": etapas(),
+        "BG_CD": fundo("cd"), "BG_FACHADA": fundo("fachada"), "MIRA": mira(), "MAPA_URL": MAPA_URL,
         "FOTO_CD": foto("cd", "rv", sizes="(max-width:860px) 80vw, 34vw"), "FOTO_ENTREGA": foto("entrega", "rv", sizes="(max-width:860px) 80vw, 34vw", attrs=' data-d="1"'),
         "FOTO_FACHADA": foto("fachada", "uni__foto", sizes="(max-width:860px) 92vw, 46vw"),
         "FOTO_EQUIPE": foto("equipe", "opera__foto", sizes="(max-width:860px) 92vw, 46vw"),
